@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @instructor.name %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @instructor.mobile %>
+</p>
+
+<p>
+  <strong>Biodata:</strong>
+  <%= @instructor.biodata %>
+</p>
+<p>
+	
+	<%@instructor.courses.each do |course|%><br>
+		<strong>Course:</strong><%=course.name%>
+
+	
+		
+		<%if course.students.empty?%>
+			<br><h3>No one enrolled for this course</h3>
+		<%else%>
+			<br><strong>Students Enrolled(<%=course.students.count%>):</strong>
+			<% course.students.each do |student|%>
+				<ul><li><%=student.name%></li></ul>
+    	    <%end%><br>
+		<%end%>
+	<%end%>
+</p>
+<%= link_to 'Add Publication', new_publication_path(@instructor)%> |
+<%= link_to 'Edit', edit_instructor_path(@instructor) %> |
+<%= link_to 'Back', instructors_path %>
